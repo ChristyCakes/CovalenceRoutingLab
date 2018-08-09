@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
 import Films from './Films';
 import People from './People';
 import Home from './Home';
@@ -9,14 +9,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Fragment>
-          <Link className="Link" to="/">Go Home</Link> 
-          <Link className="Link" to="/films">View Films</Link>
-          <Link className="Link" to="/People">View People</Link>
+        <Fragment >
+          <div className='container'>
+            <NavLink exact to="/" activeClassName="active"><button>Go Home</button></NavLink>
+            <NavLink to="/films" activeClassName="active"><button>View Films</button></NavLink>
+            <NavLink to="/People" activeClassName="active"><button>View People</button></NavLink>
+          </div>
           <Switch>
-            <Route exact path="/" component={Home}/>  
-            <Route path="/films" component={Films}/>
-            <Route path="/people" component={People}/>
+            <Route exact path="/" component={Home} />
+            <Route path="/films" component={Films} />
+            <Route path="/people" component={People} />
           </Switch>
         </Fragment>
       </Router>
