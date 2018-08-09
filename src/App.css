@@ -1,0 +1,14 @@
+.Link {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    border: 0.5rem solid rgb(88, 3, 88);
+    border-radius: 1%
+}
