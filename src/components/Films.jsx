@@ -11,59 +11,45 @@ import Film from './Film.jsx'
 class Films extends Component {
     constructor() {
         super();
-        this.state = { filmCards: [] }
-    };
+        this.state = { cards: [] }
+    }
 
     componentDidMount() {
-        let filmInfo = [];
         fetch("https://ghibliapi.herokuapp.com/films")
             .then(response => response.json())
-            .then(filmsArray => {
-                for (let i of filmsArray) {
-                    i = {
-                        key: i.id,
-                        title: i.title,
-                        director: i.director,
-                        description: i.description
-                    }
-                    filmInfo.push(i);
-                }
-            }).then(() => {
-                this.setState(
-                    {
-                        filmCards:
-                            (filmInfo).map(obj => {
-                                return (
-                                    <div key={obj.key}>
-                                        <Card >
-                                            <CardContent>
-                                                <Typography variant="headline">{obj.title}</Typography>
-                                                <Typography>Directed By: {obj.director}</Typography>
-                                                <Typography color="textSecondary">{obj.description}</Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                );
-                            })
-                    }
-                );
-            }).catch(e => console.log(e));
+            .then(films => {
+                this.setState({
+                    cards: films.map(film => {
+                        return (
+                            <Link to={`/films/${film.id}`} style={{ textDecoration: "none" }} key={film.id}>
+                                <Card >
+                                    <CardContent>
+                                        <Typography variant="headline">{film.title}</Typography>
+                                        <Typography>Directed By: {film.director}</Typography>
+                                        <Typography color="textSecondary">{film.description}</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        );
+                    }),
+                });
+            })
+            .catch(e => console.log(e))
     };
 
     render() {
         return (
             <div>
-                <Router>
+                <Router >
                     <Fragment >
-                        <Link to="/films/:id" style={{ textDecoration: "none" }}><div>{this.state.filmCards}</div></Link>
+                        {/* <Link ? /> */}
                         <Switch>
                             <Route path="/films/:id" component={Film} />
                         </Switch>
                     </Fragment>
                 </Router>
             </div>
-
-        );
+        )
     }
 }
 
