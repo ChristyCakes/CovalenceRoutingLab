@@ -4,7 +4,7 @@ import 'es6-promise';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Film from './Film.jsx'
 
 
@@ -40,12 +40,10 @@ class Films extends Component {
     render() {
         return (
             <div>
+                {this.state.cards}
                 <Router >
                     <Fragment >
-                        {/* <Link ? /> */}
-                        <Switch>
-                            <Route path="/films/:id" component={Film} />
-                        </Switch>
+                        <Route path="/films/:id" component={Film} />
                     </Fragment>
                 </Router>
             </div>
