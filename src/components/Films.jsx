@@ -44,23 +44,18 @@ class FilmsArray extends Component {
 // from all the objects in the film array, grab only 4 key/value properties 
 const FilmsCards = ({ id, title, director, description }) => {
     return (
-        // set up routes
-        <Router>
-            <Fragment>
-                {/* make each card a link, using the film id as the endpoint */}
-                <Link to={`/films/${id}`} style={{ textDecoration: "none" }}>
-                    <Card >
-                        <CardContent>
-                            <Typography variant="headline">{title}</Typography>
-                            <Typography>Directed By: {director}</Typography>
-                            <Typography color="textSecondary">{description}</Typography>
-                        </CardContent>
-                    </Card>
-                </Link>
-                {/* route to Film component when a film card is clicked */}
-                <Route path="/films/:id" component={Film} />
-            </Fragment>
-        </Router>
+        <div>
+            {/* make each card a link, using the film id as the endpoint */}
+            <Link to={`/films/${id}`} style={{ textDecoration: "none" }}>
+                <Card >
+                    <CardContent>
+                        <Typography variant="headline">{title}</Typography>
+                        <Typography>Directed By: {director}</Typography>
+                        <Typography color="textSecondary">{description}</Typography>
+                    </CardContent>
+                </Card>
+            </Link>
+        </div>
     )
 }
 
@@ -83,16 +78,17 @@ class Film extends Component {
     }
 
     render() {
-        let filmDeets= [];
+        let filmDeets = [];
         if (this.state) {
             for (let key in this.state.film) {
                 if (this.state.film.hasOwnProperty(key)) {
                     let detail = key + ": " + this.state.film[key]
-                   filmDeets.push(detail)
+                    filmDeets.push(detail)
                     console.log(key + ":" + this.state.film[key])
                 }
             }
         }
+        console.log("line 91")
         return <div>{filmDeets}</div>
     }
 }
