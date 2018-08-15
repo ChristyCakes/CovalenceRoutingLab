@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import 'isomorphic-fetch';
 import 'es6-promise';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 // ---------------- 1st Component: retrieve all films -------------------------------------
@@ -84,12 +84,12 @@ class Film extends Component {
                 if (this.state.film.hasOwnProperty(key)) {
                     let detail = key + ": " + this.state.film[key]
                     filmDeets.push(detail)
-                    console.log(key + ":" + this.state.film[key])
                 }
             }
         }
-        console.log("line 91")
-        return <div>{filmDeets}</div>
+        let display = filmDeets.join("\n")
+        console.log(display)
+        return <div>{display}</div>
     }
 }
 
