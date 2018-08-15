@@ -75,25 +75,23 @@ class Film extends Component {
                 this.setState({
                     film: Object.entries(film)
                 })
-            })                       
+            })
             .catch(e => console.log(e));
     }
 
     render() {
 
         // destructure state array for display
-        let oneFilm = [];
+        let filmDisplay = [];
         for (const [property, info] of this.state.film) {
-            oneFilm.push(`${property}: ${info}`)
+            filmDisplay.push(<div>{property}: {info}{'\n'}</div>)
         }
-        console.log(oneFilm)       
-        return <div>{oneFilm}</div>
+        return <div>{filmDisplay}</div>
     }
 }
-
 export { FilmsArray, FilmsCards, Film };
 
 // Questions:
 // how can I shorten this.props.match.params.id?
 // should I create a 4th component to display the one clicked film?
-// is there a simpler/shorter way to display the one film object in JSX besides what I did here?
+// is there a simpler way to display an object of objecs in JSX?

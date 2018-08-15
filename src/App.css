@@ -18,3 +18,7 @@ img {
     display: flex;
     justify-content: center;
 }
+
+.one-film {
+    font-size: 2rem;
+}
