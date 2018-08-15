@@ -64,32 +64,30 @@ const FilmsCards = ({ id, title, director, description }) => {
 class Film extends Component {
     constructor() {
         super();
-        this.state = { film: {} }
+        this.state = { film: [] }
     }
     componentDidMount() {
         // retrieve API data on the clicked film (match is passed in the route)
         fetch(`https://ghibliapi.herokuapp.com/films/${this.props.match.params.id}`)
             .then(res => res.json())
             .then(film => {
-                // store the individual film object details in state
-                this.setState({ film: { ...film } })
-            })
+                // set state with the film objects by converting it to an array of arrays
+                this.setState({
+                    film: Object.entries(film)
+                })
+            })                       
             .catch(e => console.log(e));
     }
 
     render() {
-        let filmDeets = [];
-        if (this.state) {
-            for (let key in this.state.film) {
-                if (this.state.film.hasOwnProperty(key)) {
-                    let detail = key + ": " + this.state.film[key]
-                    filmDeets.push(detail)
-                }
-            }
+
+        // destructure state array for display
+        let oneFilm = [];
+        for (const [property, info] of this.state.film) {
+            oneFilm.push(`${property}: ${info}`)
         }
-        let display = filmDeets.join("\n")
-        console.log(display)
-        return <div>{display}</div>
+        console.log(oneFilm)       
+        return <div>{oneFilm}</div>
     }
 }
 
@@ -98,3 +96,4 @@ export { FilmsArray, FilmsCards, Film };
 // Questions:
 // how can I shorten this.props.match.params.id?
 // should I create a 4th component to display the one clicked film?
+// is there a simpler/shorter way to display the one film object in JSX besides what I did here?
