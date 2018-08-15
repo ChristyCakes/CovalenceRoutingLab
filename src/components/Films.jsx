@@ -22,12 +22,10 @@ class FilmsArray extends Component {
             .then(films => {
                 this.setState({
                     // map over each film object in the array and send the info to FilmsCards component to display each film in a card
-                    filmsArray: films.map(film => {
-                        return (
-                            // set a key value with the film's pre-set id, use ...spread operator to grab all the objects for each film
-                            <FilmsCards key={film.id} {...film} />
-                        );
-                    })
+                    filmsArray: films.map(film =>
+                        // set a key value with the film's pre-set id, use ...spread operator to grab all the objects for each film
+                        <FilmsCards key={film.id} {...film} />
+                    )
                 });
             })
             .catch(e => console.log(e));
@@ -60,7 +58,7 @@ const FilmsCards = ({ id, title, director, description }) => {
 }
 
 
-// -------------------------  3rd Component retrieve, display one film when card is clicked -----------------
+// -------------------------  3rd Component retrieve one film when card is clicked -----------------
 class Film extends Component {
     constructor() {
         super();
@@ -72,26 +70,32 @@ class Film extends Component {
             .then(res => res.json())
             .then(film => {
                 // set state with the film objects by converting it to an array of arrays
-                this.setState({
-                    film: Object.entries(film)
-                })
+                this.setState({ film: Object.entries(film) })
             })
             .catch(e => console.log(e));
     }
 
     render() {
 
-        // destructure state array for display
-        let filmDisplay = [];
-        for (const [property, info] of this.state.film) {
-            filmDisplay.push(<div>{property}: {info}{'\n'}</div>)
-        }
-        return <div>{filmDisplay}</div>
+        return <OneFilm film={this.state.film} />
     }
 }
-export { FilmsArray, FilmsCards, Film };
+
+
+// -------------------------  4th Component display one film after card is clicked -----------------
+
+const OneFilm = (props) => {
+
+    // destructure state array for display
+    let filmDisplay = [];
+    for (const [property, info] of props.film) {
+        filmDisplay.push(<div key={property}>{property}: {info}{'\n'}</div>)
+    }
+    return <div><hr />{filmDisplay}</div>
+}
+
+export { FilmsArray, Film };
 
 // Questions:
-// how can I shorten this.props.match.params.id?
-// should I create a 4th component to display the one clicked film?
-// is there a simpler way to display an object of objecs in JSX?
+// how can I shorten this.props.match.params.id line 69?
+// is there a simpler way to display an object of objects in JSX?
