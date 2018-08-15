@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
-
 // ---------------- 1st Component: retrieve all films -------------------------------------
 class FilmsArray extends Component {
     constructor() {
@@ -36,7 +35,6 @@ class FilmsArray extends Component {
     }
 }
 
-
 // ------------------- 2nd Component: display array of film cards  -------------------------------
 
 // from all the objects in the film array, grab only 4 key/value properties 
@@ -57,7 +55,6 @@ const FilmsCards = ({ id, title, director, description }) => {
     )
 }
 
-
 // -------------------------  3rd Component retrieve one film when card is clicked -----------------
 class Film extends Component {
     constructor() {
@@ -74,20 +71,18 @@ class Film extends Component {
             })
             .catch(e => console.log(e));
     }
-
     render() {
-
+        // pass film data to next component
         return <OneFilm film={this.state.film} />
     }
 }
 
 
 // -------------------------  4th Component display one film after card is clicked -----------------
-
 const OneFilm = (props) => {
-
     // destructure state array for display
     let filmDisplay = [];
+    // loop through film data (nested array) to display each pair of info
     for (const [property, info] of props.film) {
         filmDisplay.push(<div key={property}>{property}: {info}{'\n'}</div>)
     }
@@ -95,7 +90,3 @@ const OneFilm = (props) => {
 }
 
 export { FilmsArray, Film };
-
-// Questions:
-// how can I shorten this.props.match.params.id line 69?
-// is there a simpler way to display an object of objects in JSX?
