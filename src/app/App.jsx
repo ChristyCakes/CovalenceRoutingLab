@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, NavLink, Switch, Route } from 'react-router-dom';
-import { FilmsArray, Film, Person, PeopleArray } from '../components/index.js';
-import { Home } from '../components'
-
+import { FilmsArray, Film, Person, PeopleArray, Home } from '../components/index.js';
 import './App.css';
 
 class App extends Component {
