@@ -4,7 +4,7 @@ import 'es6-promise';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const PeopleCards = ({ id, name, gender, age }) => {
     return (

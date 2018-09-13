@@ -4,7 +4,7 @@ import 'es6-promise';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // ------------------- 2nd Component: display array of film cards  -------------------------------
 

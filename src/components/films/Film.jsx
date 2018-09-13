@@ -20,8 +20,6 @@ class Film extends Component {
             .catch(e => console.log(e));
     }
     render() {
-        console.log(this.props.match)
-
         // pass film data to next component
         return <OneFilm film={this.state.film} />
     }

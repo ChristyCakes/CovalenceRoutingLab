@@ -6,9 +6,11 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      // set up router routes
       <Router>
         <Fragment >
           <div className='container'>
+            {/* use NavLink and activeClassName to enable highlight current page in css.  Make 3 buttons */}
             <NavLink exact to="/" activeClassName="active"><button>Go Home</button></NavLink>
             <NavLink to="/films" activeClassName="active"><button>View Films</button></NavLink>
             <NavLink to="/People" activeClassName="active"><button>View People</button></NavLink>
