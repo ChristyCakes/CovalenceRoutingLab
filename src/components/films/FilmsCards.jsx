@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import 'isomorphic-fetch';
 import 'es6-promise';
 import Card from '@material-ui/core/Card';
@@ -6,16 +6,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Link } from 'react-router-dom';
 
-// route stops here with display of films, so no component to import
-
-
 // ------------------- 2nd Component: display array of film cards  -------------------------------
 
 // from all the objects in the film array, grab only 4 key/value properties 
 const FilmsCards = ({ id, title, director, description }) => {
     return (
-        <div>
-            {/* make each card a link, using the film id as the endpoint */}
+        <Fragment >
+            {/* make each card a link, using the film id as the route endpoint */}
             <Link to={`/films/${id}`} style={{ textDecoration: "none" }}>
                 <Card >
                     <CardContent>
@@ -25,7 +22,7 @@ const FilmsCards = ({ id, title, director, description }) => {
                     </CardContent>
                 </Card>
             </Link>
-        </div>
+        </Fragment>
     )
 }
 
